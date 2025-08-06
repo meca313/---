@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
+  <title>哔哩哔哩</title>
+  <style>
+    * {
+      padding: 0;
+      margin: 0;
+    }
+
+    li {
+      list-style: none;
+    }
+
+    .header {
+      width: 1390px;
+      height: 155px;
+      background-color: pink;
+    }
+
+    .header-banner-title {
+      display: flex;
+      flex-direction: row;
+    }
+
+    .header-banner-title li {
+      color: #ffffff;
+      font-size: 14px;
+      width: auto;
+      text-align: center;
+      margin: 15px;
+    }
+
+    .search {
+      border: radius 8px 8px 8px 8px;
+    }
+
+    .content {
+      width: 1180px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .mid-banner {
+      width: 1180px;
+      height: 110px;
+      display: flex;
+      flex-direction: row;  
+      align-items: center;
+    }
+
+    .channel {
+      width: 140px;
+      height: 72px;
+      background-color: #0c8ecf;
+    }
+
+    .channel-left {
+      width: 761px;
+      margin-left: 30px;
+      display: flex;
+      flex-wrap: wrap;
+      flex-direction: row;
+      justify-content: start;
+    }
+
+    .channel-left li {
+      font-size: 14px;
+      height: 26px;
+      width: 60px;
+      color: rgb(97, 102, 109);
+      line-height: 26px;
+      margin: 0 5px 5px 0;
+      background-color: #f6f7f8;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      box-sizing: border-box;
+      border-radius: 5px;
+    }
+
+    .channel-right {
+      width: 240px;
+      display: flex;
+      flex-wrap: wrap;
+    }
+
+    .channel-right li {
+      font-size: 14px;
+      height: 28px;
+      width: 72px;
+      line-height: 26px;
+      margin: 0 5px 5px 0;
+      background-color: #ffffff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      box-sizing: border-box;
+    }
+
+    .banner {
+      width: 580px;
+      height: 410px;
+      position: relative;
+      border-radius: 8px;
+      margin-top: 20px;
+      overflow: hidden;
+    }
+
+    .banner-image {
+      width: 100%;
+      height: 320px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .banner-info {
+      width: 100%;
+      height: 90px;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      padding: 15px 20px;
+      box-sizing: border-box;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      position: relative;
+    }
+
+    .banner-title {
+      color: #ffffff;
+      font-size: 18px;
+      font-weight: bold;
+      margin-bottom: 8px;
+      line-height: 1.4;
+    }
+
+    .banner-desc {
+      color: rgba(255, 255, 255, 0.8);
+      font-size: 14px;
+      line-height: 1.4;
+    }
+
+    .swiper-container {
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+    }
+
+    .swiper-slide {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .swiper-slide img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .swiper-pagination {
+      bottom: 20px;
+    }
+
+    .swiper-pagination-bullet {
+      width: 12px;
+      height: 12px;
+      background-color: rgba(255, 255, 255, 0.5);
+      border-radius: 50%;
+      margin: 0 4px;
+    }
+
+    .swiper-pagination-bullet-active {
+      background-color: #00a1d6;
+    }
+
+    .swiper-button-next,
+    .swiper-button-prev {
+      width: 40px;
+      height: 40px;
+      background-color: rgba(0, 0, 0, 0.3);
+      border-radius: 50%;
+      color: #fff;
+      font-size: 18px;
+      top: 50%;
+      transform: translateY(-50%);
+    }
+
+    .swiper-button-next:hover,
+    .swiper-button-prev:hover {
+      background-color: rgba(0, 0, 0, 0.5);
+    }
+
+    .banner-nav {
+      position: absolute;
+      bottom: 25px;
+      left: 0;
+      right: 0;
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      z-index: 10;
+    }
+
+    .banner-nav-btn {
+      width: 36px;
+      height: 36px;
+      background-color: rgba(255, 255, 255, 0.2);
+      border-radius: 50%;
+      color: #fff;
+      font-size: 16px;
+      border: none;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.3s;
+      backdrop-filter: blur(10px);
+    }
+
+    .banner-nav-btn:hover {
+      background-color: rgba(255, 255, 255, 0.3);
+      transform: scale(1.1);
+    }
+  </style>
+</head>
+
+<body>
+  <div class="header">
+    <div class="header-banner">
+      <ul class="header-banner-title">
+        <li>首页</li>
+        <li>番剧</li>
+        <li>直播</li>
+        <li>游戏中心</li>
+        <li>会员购</li>
+        <li>漫画</li>
+        <li>赛事</li>
+        <li>下载客户端</li>
+        <li>
+          <form>
+            <input
+              class="search"
+              type="text"
+            >
+          </form>
+        </li>
+        <li><img
+            src=""
+            alt="头像"
+          ></li>
+        <li>大会员</li>
+        <li>消息</li>
+        <li>动态</li>
+        <li>收藏</li>
+        <li>历史</li>
+        <li>创作中心</li>
+        <li>投稿</li>
+      </ul>
+    </div>
+  </div>
+  <div class="content">
+    <div class="mid-banner">
+      <div class="channel">
+      </div>
+      <ul class="channel-left">
+        <li>番剧</li>
+        <li>番剧</li>
+        <li>番剧</li>
+        <li>番剧</li>
+        <li>番剧</li>
+        <li>番剧</li>
+        <li>番剧</li>
+        <li>番剧</li>
+        <li>番剧</li>
+        <li>番剧</li>
+        <li>番剧</li>
+        <li>小剧场</li>
+        <li>番剧</li>
+        <li>番剧</li>
+        <li>番剧</li>
+        <li>时尚美妆</li>
+        <li>番剧</li>
+        <li>番剧</li>
+        <li>番剧</li>
+        <li>体育运动</li>
+        <li>国创</li>
+        <li>番剧</li>
+      </ul>
+      <ul class="channel-right">
+        <li>专栏</li>
+        <li>专栏</li>
+        <li>专栏</li>
+        <li>专栏</li>
+        <li>专栏</li>
+        <li>专栏</li>
+      </ul>
+    </div>
+    <div class="core-content">
+      <div class="banner">
+        <div class="banner-image">
+          <div class="swiper-container">
+            <div class="swiper-wrapper">
+              <div class="swiper-slide">
+                <img src="images/0f21c285a4bdba65be75c366d463d1d791483ba2.png@800w_512h_!web-home-carousel-cover (1).avif" alt="轮播图1">
+              </div>
+              <div class="swiper-slide">
+                <img src="images/481121f689a49dd0da38e60caf0d8acfd85bdc31.jpg@800w_512h_!web-home-carousel-cover.avif" alt="轮播图2">
+              </div>
+              <div class="swiper-slide">
+                <img src="images/a8ff2c77aafbcda473709f87713bd09043bd740a.png@800w_512h_!web-home-carousel-cover.avif" alt="轮播图3">
+              </div>
+              <div class="swiper-slide">
+                <img src="images/c50b6a5fc8a987fdbc9abca03661cf32.jpg@800w_512h_!web-home-carousel-cover.avif" alt="轮播图4">
+              </div>
+              <div class="swiper-slide">
+                <img src="images/f657f16a69b9e646a33127a9dee124ceecdb1bd2.jpg@800w_512h_!web-home-carousel-cover.avif" alt="轮播图5">
+              </div>
+            </div>
+            <!-- 分页器 -->
+            <div class="swiper-pagination"></div>
+          </div>
+        </div>
+        <div class="banner-info">
+          <div class="banner-title">热门推荐</div>
+          <div class="banner-desc">发现更多精彩内容，每日更新精选视频</div>
+          <!-- 自定义导航按钮 -->
+          <div class="banner-nav">
+            <button class="banner-nav-btn" id="prevBtn">‹</button>
+            <button class="banner-nav-btn" id="nextBtn">›</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- 引入Swiper -->
+  <link
+    rel="stylesheet"
+    href="https://unpkg.com/swiper/swiper-bundle.min.css"
+  >
+  <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+  <script>
+    var mySwiper = new Swiper('.swiper-container', {
+      // 自动播放
+      autoplay: {
+        delay: 4000,
+        disableOnInteraction: false,
+      },
+      // 循环播放
+      loop: true,
+      // 分页器
+      pagination: {
+        el: '.swiper-pagination',
+        clickable: true,
+        dynamicBullets: true,
+      },
+      // 切换效果
+      effect: 'slide',
+      // 切换速度
+      speed: 600,
+      // 鼠标悬停时暂停自动播放
+      pauseOnMouseEnter: true,
+    });
+
+    // 自定义导航按钮功能
+    document.getElementById('prevBtn').addEventListener('click', function() {
+      mySwiper.slidePrev();
+    });
+
+    document.getElementById('nextBtn').addEventListener('click', function() {
+      mySwiper.slideNext();
+    });
+  </script>
+
+</body>
+
+</html>
